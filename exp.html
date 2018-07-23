@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./bootstrap.css" />
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./font-awesome/css/font-awesome.css" />
+    </head>
+    <body ng-app="customTable" ng-controller="customTableCtrl" class="container">
+        <select>
+            <option ng-repeat="i in range">
+                    {{ rate.is_default ? 'default' : '' }} {{rate.name}}
+            </option>
+        </select>    
+    </body>
+    <script src="./jquery.js"></script>
+    <script src="./angular.js"></script>
+    <script src="./bootstrap.js"></script>
+    <script src="./exp.js"></script>
+    
+
+</html>
