@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/bootstrap.css" />
+        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="/jquery-ui.css" />
+    </head>
+    <body ng-app="getStarted" ng-controller="getStartedCtrl" class="container">
+        <table-almighty config="tableConfig"></table-almighty>
+    </body>
+    <script src="/jquery.js"></script>
+    <script src="/jquery-ui.js"></script>
+    <script src="/angular.js"></script>
+    <script src="/bootstrap.js"></script>
+    <script src="/sortable.js"></script>
+    <script src="/dist/table-almighty.js"></script>
+    <script>
+            var app = angular.module('getStarted', ['tableAlmightyApp']);
+
+            app.controller('getStartedCtrl', function ($scope, $http) {
+
+                $http.get("https://api.myjson.com/bins/lmt46")
+                .then(function(response) {
+                    $scope.tableConfig.tBody = response.data;
+                });
+
+                $scope.tableConfig = {
+                    tHeads: [
+                        { property: 'firstName', text: 'First Name'},
+                        { property: 'lastName', text: 'Last Name'},
+                        { property: 'age', text: 'Age' },
+                        { property: 'DOB', text: 'DOB'},
+                    ],
+                    tBody:[],
+                    getCellData : $scope.getCellData,
+                    trackBy : 'id'
+                }  
+            })
+    </script>
+</html>
