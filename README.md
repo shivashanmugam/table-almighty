@@ -1,6 +1,3 @@
-# table-almighty
-angularJS table directive, Scalable, extendable, configurable, Pretty Smart
-
 # table-almighty 
 
 
@@ -46,8 +43,8 @@ app.controller('getStartedCtrl', function ($scope, $http) {
 })
 ```
 
-`tableAlmightyApp` has to injected in angular app.
-
+- `tableAlmightyApp` has to injected in angular app.
+- `tableConfig` used as specification object to generate table, It is the only variable two-way binded with `table-almighty` directive,
 
 **Property Description**
 - `tBody` will contain the table data,
@@ -171,22 +168,159 @@ $scope.tableConfig = {
     ...
 }
 ```
-**rowActionObject Property Description**
+**rowAction Object Property Description**
 - `toolTip` : shows tooltip
 - `text` : Display text of the button
 - `FAIcon` : font aweseome icon class suffix to display text
-- `fn` : 
-
-
+- `fn` : function to execute upon clicking(row unique id Will be sent as first argument for the function)
+    - Sample `removeRow` function
+     ```javascript
+     $scope.removeRow = function(rowId) {
+        $scope.tableConfig.tBody.every(function(tRow, index){
+            if(rowId == tRow[$scope.tableConfig.trackBy] ){
+                $scope.tableConfig.tBody.splice(index, 1);
+                return false;
+            }
+            return true;
+        })
+    }
+     ```
 ## Selecting rows & Performing actions
+```javascript=
+$scope.tableConfig = {
+    
+    ...
+    ...
+    tableActions:[
+        {
+            toolTip : 'Deleted selected rows',
+            text:'Delete Selected',
+            FAIcon:'fa-trash',
+            fn: $scope.deleteSelected
+        }
+    ]
+    ...
+    ...
+    toolSwitch:{
+            ...
+            selectRowEnabled : true,
+            ...
+    }
+}
+```
+
+> Need to enable `selectRowEnabled` in `toolSwitch`.
+
+**tableActions Object Property Description**
+- `toolTip` : shows tooltip
+- `text` : Display text of the button
+- `FAIcon` : font aweseome icon class suffix to display text
+- `fn` : function to execute upon clicking(The selected rows will sent as a first arugment to the function)
+    - Sample `deleteSelected` function 
+    ```javascript
+        $scope.deleteSelected = function(){
+        var seletedRows = $scope.tableConfig.getSelectedRows();
+        seletedRows.forEach(function(tRowSelected){
+            $scope.tableConfig.tBody.forEach(function(tRow, tRowIndex){
+                if(tRow[$scope.tableConfig.trackBy] == tRowSelected[$scope.tableConfig.trackBy] ){
+                    $scope.tableConfig.tBody.splice(tRowIndex, 1);
+                }
+            })
+        })
+    }
+    ```
+    
+In the code `$scope.tableConfig.getSelectedRows();` returns the selected rows. `getSelectedRows` function have added as the `tableConfig` is binded to the directive.
 
 ## Conditional coloring of rows & Column coloring 
+```javascript=
+$scope.tableConfig = {
+    ...
+    ...
+    rowColorScheme: [
+        {
+            expression:"tRow['age'] > 50",
+            class:'bg-silver'
+        },
+        {
+            expression:"tRow['age'] < 30",
+            class:'bg-green'
+        }
+    ],
+    ...
+    ...
+}
+```
+- `rowColorScheme` is an Object Array
 
+**rowColorScheme Object Property Description**
+- `expression` tRow['age'] > 50
+    - `tRow` gives access to particular row of the Table, `age` refers which property of the row must be applied for the greater than 50 (`tRow['age'] > 50`)  constrain.
+- `class` The custom class which will be applied when the `expression` is true.
 ## Reordering
+```javascript=
+$scope.tableConfig = {
+    ...
+    ...
+    sortableOptions: {
+            disabled: false,
+            //this helper function makes sure not to shrink the td in tr while dragging
+            helper: function (e, ui) {
+                ui.children().each(function () {
+                    $(this).width($(this).width());
+                });
+                return ui;
+            }
+        },
+    ...
+    ...
+    toolSwitch:{
+            ...
+            ...
+            sortingEnabled: true
+    }   
+}
+```
+Currently adding the `sortableOptions` and `toolSwitch.sortingEnabled` value true enables reordering.
+> `sortableOptions` Object will be removed in further versions, `toolSwitch.sortingEnabled` will be the primary. (currently its a bit ugly due technical difficulty faced).
+
+> Note : Re-ordering only helpful when not using pagination, filter, sorting, After re-ordering you can get the re-ordered data from table config's tBody (`tableConfig.tBody`)
+
+
 
 ## Custom labels 
-
+```javascript=
+$scope.tableConfig = {
+    ...
+    ...
+     customLabels:{
+            selectedCount:'Artículos seleccionados',
+            rowsPerPage : 'Filas por página',
+            selectSearchDefault : 'Seleccionar'
+        },
+    ...
+    ...
+}
+```
+By default the table has some default english text for table action labels, In case the users are spanish you can use `customLabels` to override the default text.
 ## Custom classes
+```javascript=
+$scope.tableConfig = {
+    ...
+    ...
+     customClass:{
+            table:'custom-tb-class',
+            filterInputBox : 'custom-input-box',
+            selectBox : 'custom-input-box',
+            rowActionButton: 'custom-row-action-button',
+            tableActionButton: 'custom-table-action-button',
+            pagination:'custom-pagination'
+        },
+    ...
+    ...
+}
+```
+Currently the directive uses bootstrap, To override that and to use custom class for different components use `customClass` Object in table config.
 
 ## Dependencies
 **Optional Libraries**
@@ -206,5 +340,3 @@ $http.get("https://api.myjson.com/bins/lmt46")
 
 > **Note** 
 > Currently `angular-sortable` is not optional because loading angular modules dynamically is quite a hack, Future versions might have it.
-
-custom column class
