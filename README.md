@@ -295,7 +295,7 @@ You can also have this function as a `tableActions` Object.
 
 
 ## Conditional coloring of rows and Column coloring 
-
+### Row color
 ```javascript=
 $scope.tableConfig = {
     ...
@@ -320,6 +320,34 @@ $scope.tableConfig = {
 - `expression` tRow['age'] > 50
     - `tRow` gives access to particular row of the Table, `age` refers which property of the row must be applied for the greater than 50 (`tRow['age'] > 50`)  constrain.
 - `class` The custom class which will be applied when the `expression` is true.
+
+### Coloring column (Custom css classes for column)
+```javascript=
+$scope.tableConfig = {
+    ...
+    ...
+     tHeads: [
+            { property: 'firstName', text: 'First Name', customColumnClass: 'first-name' }
+     ]
+    ...
+    ...
+}
+```
+`tHead` Object property `customColumnClass` allows to add css classes for that particular column alone, ( `first-name` is the css class). Through that we can add background color for the column. 
+
+### Selected row Color
+```javascript=
+$scope.tableConfig = {
+    ...
+    ...
+     selectedRowColor:'red', // #F1F1F1...etc
+    ...
+    ...
+}
+```
+By adding `selectedRowColor` property adds specified color for the row.
+
+
 ## Reordering
 ```javascript=
 $scope.tableConfig = {
