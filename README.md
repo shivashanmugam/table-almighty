@@ -1,9 +1,24 @@
 # table-almighty 
 
+## Table of Content
+1. [Getting Started](#getting-started)
+    - [Simple Example](#simple-example)
+    - [Process data before rendering](#process-data-before-rendering)
+2. [Search & Sort](#search-and-sort)
+    - [Search](#search)
+    - [Sort](#sort)
+3. [Actions for every row](#actions-for-every-row)
+4. [Selecting rows and Performing actions](#selecting-rows-and-performing-actions)
+    - [Refresh directive Resetting Directive values](#refresh-directive-resetting-directive-values)
+5. [Conditional coloring of rows and Column coloring](#conditional-coloring-of-rows-and-column-coloring)
+6. [Reordering](#reordering)
+7. [Custom labels](#custom-labels)
+8. [Custom classes](#custom-classes)
+9. [Dependencies](#dependencies)
 
 ## Getting Started
 
-Simple Example
+### Simple Example
 ```htmlmixed=
 <body ng-app="getStarted" ng-controller="getStartedCtrl" class="container">
     <table-almighty config="tableConfig"></table-almighty>
@@ -45,7 +60,6 @@ app.controller('getStartedCtrl', function ($scope, $http) {
 
 - `tableAlmightyApp` has to injected in angular app.
 - `tableConfig` used as specification object to generate table, It is the only variable two-way binded with `table-almighty` directive,
-
 **Property Description**
 - `tBody` will contain the table data,
 - `tHeads` contains array objects each represent header of column(th) in table 
@@ -53,6 +67,37 @@ app.controller('getStartedCtrl', function ($scope, $http) {
     `property` mentions which property has to be used for column
     `text` mention how the property header should display upon rendering,
 - `trackBy` will have the property which is unique for each row.
+
+### Process data before rendering
+Incase if the column details need to be processed before rendering  in the table, For example DOB property is in UTC format(`2017-11-29T12:48:01-08:00`), But want to display in more readable format (`Sun May 28 2017`) tableConfig provides function to process tBody values before rendering.
+```javascript=
+
+$scope.getCellData = function(row, property){
+    if(property == "DOB"){
+        return new Date(row[property]).toDateString()
+    }else{
+        return row[property]
+    }
+}
+$scope.tableConfig = {
+    ...
+    ...
+    tHeads: [
+        {...},
+        {...}
+    ]
+    tBody:[ 
+        {...},
+        {...}
+    ],
+    trackBy : 'id',
+    getCellData : $scope.getCellData,
+    ...
+    ...
+}
+```
+
+Other use cases are instead of showing full name of the person instead of show first name and lastname.
 
 ## Rows per page &  Pagination
 ```javascript=
@@ -82,7 +127,8 @@ $scope.tableConfig = {
 > Note
 > `rowsPerPageOptions` will not work if `rowsPerPage` is not provided
 
-## Search & Sort
+## Search and Sort
+
 ### Search
 ```javascript=
 $scope.tableConfig = {
@@ -119,7 +165,7 @@ $scope.tableConfig = {
         type: 'SELECT', options:[
             { text: 'Age > 50' , exp : "tRow['age'] > 50" },
             { text: '9' , exp : "tRow['age'] == 9" },
-            { text : '10'}
+            { text : '24', exp : "tRow['age'] == 24"}
         ],
         inputType: 'Number',
     },
@@ -185,7 +231,8 @@ $scope.tableConfig = {
         })
     }
      ```
-## Selecting rows & Performing actions
+## Selecting rows and Performing actions
+
 ```javascript=
 $scope.tableConfig = {
     
@@ -232,7 +279,23 @@ $scope.tableConfig = {
     
 In the code `$scope.tableConfig.getSelectedRows();` returns the selected rows. `getSelectedRows` function have added as the `tableConfig` is binded to the directive.
 
-## Conditional coloring of rows & Column coloring 
+### Refresh directive (Resetting Directive values)
+Incase want's to refresh table data , just need to update `tableConfig.tBody` with new table data and need to call `$scope.tableConfig.resetDirective` function to reset search, sort, pagination, selected rows 
+```javascript=
+$scope.refresh = function(){
+        $http.get("https://api.myjson.com/bins/lmt46")
+        .then(function(response) {
+            $scope.tableConfig.tBody = response.data;
+        });           
+        $scope.tableConfig.resetDirective(); // function attached as part of tableConfig upon directive linking
+    }
+```
+
+You can also have this function as a `tableActions` Object.
+
+
+## Conditional coloring of rows and Column coloring 
+
 ```javascript=
 $scope.tableConfig = {
     ...
@@ -339,4 +402,4 @@ $http.get("https://api.myjson.com/bins/lmt46")
 ```
 
 > **Note** 
-> Currently `angular-sortable` is not optional because loading angular modules dynamically is quite a hack, Future versions might have it.
+> Currently `angular-sortable` is not optional because loading angular modules dynamically is quite a hack, Future versions might have it. (angular sortable will trigger if jquery and jquery-ui is not loaded, But that does't cause any effects in table-almighty direcive ),
