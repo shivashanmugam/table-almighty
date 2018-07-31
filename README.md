@@ -11,6 +11,8 @@
 4. [Selecting rows and Performing actions](#selecting-rows-and-performing-actions)
     - [Refresh directive Resetting Directive values](#refresh-directive-resetting-directive-values)
 5. [Conditional coloring of rows and Column coloring](#conditional-coloring-of-rows-and-column-coloring)
+    - [Coloring column ( custom css classes for column)](#coloring-column-custom-css-classes-for-column)
+    - [Selected row color](#selected-row-color)
 6. [Reordering](#reordering)
 7. [Custom labels](#custom-labels)
 8. [Custom classes](#custom-classes)
