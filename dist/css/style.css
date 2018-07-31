@@ -1,0 +1,78 @@
+body{
+    font-family: 'Open Sans', Arial;
+    font-size: 12px;
+    margin-top:50px;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
+
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+.cursor-move {
+    cursor:move !important;
+}
+
+.bg-silver{
+    background-color:#e1e1e1;
+}
+
+.bg-green{
+    background-color:greenyellow;
+}
+
+.first-name{
+    background-color: yellow;
+    text-align: center;
+}
+
+.custom-tb-class{
+    background-color: white;
+}
+
+.custom-input-box{
+    background:#f1f1f1;
+}
+
+.custom-select-box{
+    background:#f1f1f1;
+}
+
+.custom-row-action-button{
+    background:yellowgreen;
+    
+}
+
+.custom-table-action-button{
+    background:green;   
+    color:white;
+    float:left;
+}
+
+.custom-pagination{
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+.custom-pagination li {
+    float: left;
+    padding:4px 10px;
+    margin:1px;
+    border:1px solid silver;
+}
+
+.custom-pagination li:hover{
+    background:#f1f1f1;
+}
+
+.custom-pagination li.active{
+    background:#f1f1f1;
+}

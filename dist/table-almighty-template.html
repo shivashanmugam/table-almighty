@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-4">
-        <span ng-if="config.toolSwitch.selectRowEnabled" >{{config.customLabels.selectedCount ? config.customLabels.selectedCount : 'Selected Items'}} : {{config.selectedRows.length}}</span>
+        <span ng-if="config.toolSwitch.selectRowEnabled" >{{config.customLabels.selectedCount ? config.customLabels.selectedCount : 'Selected Items'}} : {{_tAVars.selectedRows.length}}</span>
     </div>
 </div>
 <div class="row">
@@ -22,11 +22,11 @@
     <thead>
         <tr>
             <th ng-if="config.toolSwitch.selectRowEnabled">
-                <input ng-change="selectRow('selectAll')" ng-model="config._selectAll" type="checkbox" /><span></span>
+                <input ng-change="selectRow('selectAll')" ng-model="_tAVars.selectAll" type="checkbox" /><span></span>
             </th>
             <th ng-repeat="tHead in config.tHeads track by $index"  ng-class="{'cursor-pointer' : config.toolSwitch.sortingEnabled, '{{tHead.headerAlign}}' : tHead.headerAlign}" >
                 <span ng-click="sort(tHead)">{{tHead.text}}</span>
-                <span ng-if="config.toolSwitch.sortingEnabled" class="fa" ng-show="tHead.property == _sortHead" ng-class="{'fa-sort-asc': !_sortReverse, 'fa-sort-desc': _sortReverse}"></span>
+                <span ng-if="config.toolSwitch.sortingEnabled" class="fa" ng-show="tHead.property == _tAVars.sortHead" ng-class="{'fa-sort-asc': !_tAVars.sortReverse, 'fa-sort-desc': _tAVars.sortReverse}"></span>
             </th>
             <th ng-if="config.rowActions">
                 
@@ -50,7 +50,7 @@
         </tr>
     </thead>
     <tbody ui-sortable="config.sortableOptions">
-        <tr ng-class="config.sortableOptions.enabled ? 'cursor-move' : ''" custom-row-class ng-repeat="tRow in config._tBodyClone | orderBy:_sortHead:_sortReverse track by tRow[config.trackBy]" >
+        <tr ng-class="!config.sortableOptions.disabled ? 'cursor-move' : ''" custom-row-class ng-repeat="tRow in config._tBodyClone | orderBy:_tAVars.sortHead:_tAVars.sortReverse track by tRow[config.trackBy]" >
             <td ng-if="config.toolSwitch.selectRowEnabled">
                 <input ng-model="tRow._selected" ng-change="selectRow('row', tRow._selected)" type="checkbox" />
             </td>
@@ -66,8 +66,8 @@
         </tr>
     </tbody>       
 </table>
-<div ng-if="config.rowsPerPage && config.rowsPerPageOptions" class="pagination-container pull-right">
+<div ng-if="config.rowsPerPage" class="pagination-container pull-right">
     <ul ng-class="config.customClass.pagination ? config.customClass.pagination  : 'pagination' ">
-        <li ng-click="config._currentPage = i" ng-repeat="i in _pageRange" ng-class="config._currentPage == i ? 'active' : ''"><a href="#">{{i}}</a></li>
+        <li ng-click="_tAVars.currentPage = i" ng-repeat="i in _tAVars.pageRange" ng-class="_tAVars.currentPage == i ? 'active' : ''"><a href="#">{{i}}</a></li>
     </ul>
 </div>

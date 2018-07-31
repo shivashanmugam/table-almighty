@@ -1,97 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./bootstrap.css" />
-        <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="./font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="./jquery-ui.css" />
+        <link rel="stylesheet" href="/libs/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" href="/libs/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="/dist/css/style.css" />
     </head>
     <body ng-app="customTable" ng-controller="customTableCtrl" class="container">
-        <c-table config="tableConfig"></c-table>
+        <table-almighty config="tableConfig"></table-almighty>
     </body>
-    <script src="./jquery.js"></script>
-    <script src="./jquery-ui.js"></script>
-    <script src="./angular.js"></script>
-    <script src="./bootstrap.js"></script>
-    <script src="./sortable.js"></script>
-    <script src="./main.js"></script>
-    <script type="text/ng-template" id="c-table.html">
-        <div class="row">
-            <div class="col-xs-4">
-                <span ng-if="config.toolSwitch.selectRowEnabled" >{{config.customLabels.selectedCount ? config.customLabels.selectedCount : 'Selected Items'}} : {{config.selectedRows.length}}</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                <div ng-repeat="action in config.tableActions">
-                    <button ng-attr-title="{{action.toolTip}}" ng-click="action.fn()" ng-class="config.customClass.tableActionButton ? config.customClass.tableActionButton : 'btn btn-xs btn-default pull-left'" class="btn btn-default btn-xs "><i ng-class="action.FAIcon ? action.FAIcon : '' " class="fa"></i> &nbsp;{{action.text}}</button>
-                </div>
-            </div>
-            <div class="col-xs-4" ng-if="config.mainInputSearchProperties">
-                <input ng-model="config._mainInputSearch" type="text" ng-class="config.customClass.mainInputBox ? config.customClass.mainInputBox : ''"  ng-change="search('', 'mainInputBox')" />
-            </div>
-            <div class="col-xs-4">
-                <span ng-if="config.rowsPerPage && config.rowsPerPageOptions" class="pull-right" >{{config.customLabels.rowsPerPage ? config.customLabels.rowsPerPage : 'Rows Per Page'}}
-                    <select ng-model="config.rowsPerPage" ng-class="config.customClass.selectBox ? config.customClass.selectBox : ''" ng-init="tHead.search._input= ''">
-                        <option ng-value="opt" ng-repeat="opt in config.rowsPerPageOptions">{{opt}}</option>
-                        <option ng-value="100000" >all</option>
-                    </select>
-                </span>
-            </div>
-        </div>
-        <table class="table" ng-class="config.customClass.table ? config.customClass.table : ''">
-            <thead>
-                <tr>
-                    <th ng-if="config.toolSwitch.selectRowEnabled">
-                        <input ng-change="selectRow('selectAll')" ng-model="config._selectAll" type="checkbox" /><span></span>
-                    </th>
-                    <th ng-repeat="tHead in config.tHeads track by $index"  ng-class="{'cursor-pointer' : config.toolSwitch.sortingEnabled, '{{tHead.headerAlign}}' : tHead.headerAlign}" >
-                        <span ng-click="sort(tHead)">{{tHead.text}}</span>
-                        <span ng-if="config.toolSwitch.sortingEnabled" class="fa" ng-show="tHead.property == _sortHead" ng-class="{'fa-sort-asc': !_sortReverse, 'fa-sort-desc': _sortReverse}"></span>
-                    </th>
-                    <th ng-if="config.rowActions">
-                        
-                    </th>
-                </tr>
-                <tr class="tableFilter" ng-hide="!config.toolSwitch.filterRowEnabled">
-                    <td ng-if="config.toolSwitch.selectRowEnabled"></td>
-                    <td ng-repeat="tHead in config.tHeads">
-                        <span ng-if="tHead.search.type == 'INPUT'">
-                            <input ng-class="config.customClass.filterInputBox ? config.customClass.filterInputBox : ''" ng-model="tHead.search._input" type="text" ng-change="search(tHead)" />
-                        </span>
-                        <span ng-if="tHead.search.type == 'SELECT'">
-                            <select ng-class="config.customClass.selectBox ? config.customClass.selectBox : ''" ng-init="tHead.search._input= ''" ng-model="tHead.search._input" ng-change="search(tHead)">
-                                <option selected  ng-value="''">{{config.customLabels.selectSearchDefault ? config.customLabels.selectSearchDefault : '[Clear]'}}</option>
-                                <option ng-value="opt" ng-change="search('filterSearch')" ng-model="tHead.search._input" ng-repeat="opt in tHead.search.options">
-                                    {{ opt.text ? opt.text : opt }}
-                                </option>
-                            </select>
-                        </span>
-                    </td>
-                </tr>
-            </thead>
-            <tbody ui-sortable="config.sortableOptions">
-                <tr ng-class="config.sortableOptions.enabled ? 'cursor-move' : ''" custom-row-class ng-repeat="tRow in config._tBodyClone | orderBy:_sortHead:_sortReverse track by tRow[config.trackBy]" >
-                    <td ng-if="config.toolSwitch.selectRowEnabled">
-                        <input ng-model="tRow._selected" ng-change="selectRow('row', tRow._selected)" type="checkbox" />
-                    </td>
-                    <td ng-class="{'{{tHead.customColumnClass}}' : tHead.customColumnClass }" ng-repeat="tHead in config.tHeads" ng-bind="config.getCellData(tRow, tHead.property)">
-                    </td>
-                    <td ng-if="config.rowActions" >
-                        <span ng-repeat="action in config.rowActions" >
-                            <button ng-attr-title="{{action.toolTip}}"  type="button" ng-class="config.customClass.rowActionButton ? config.customClass.rowActionButton : 'btn btn-xs btn-default'" ng-click="action.fn(tRow[config.trackBy])">
-                                {{action.text}}<i class="fa" ng-class="action.FAIcon"></i>
-                            </button>
-                        </span>    
-                    </td>
-                </tr>
-            </tbody>       
-        </table>
-        <div ng-if="config.rowsPerPage && config.rowsPerPageOptions" class="pagination-container pull-right">
-            <ul class="pagination">
-                <li ng-click="config._currentPage = i" ng-repeat="i in _pageRange" ng-class="config._currentPage == i ? 'active' : ''"><a href="#">{{i}}</a></li>
-            </ul>
-        </div>
-        
-    </script>
+    <script src="/libs/jquery/jquery.js"></script>
+    <script src="/libs/jquery-ui/jquery-ui.js"></script>
+    <script src="/libs/bootstrap/bootstrap.js"></script>
+    <script src="/libs/angular/angular.js"></script>
+    <script src="/libs/angular-sortable/sortable.js"></script>
+    <script src="/dist/js/table-almighty.js"></script>
+    <script src="/main.js"></script>
 </html>

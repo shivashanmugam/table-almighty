@@ -16,33 +16,27 @@
     <script src="/dist/js/table-almighty.js"></script>
     <script>
             var app = angular.module('getStarted', ['tableAlmightyApp']);
-
+            
             app.controller('getStartedCtrl', function ($scope, $http) {
-
+                $http.get("https://api.myjson.com/bins/lmt46")
+                .then(function(response) {
+                    $scope.tableConfig.tBody = response.data;
+                });   
                 $scope.tableConfig = {
                     tHeads: [
-                        { property: 'firstName', text: 'First Name'},
+                        { property: 'firstName', text: 'First Name', search : {type: 'INPUT' }},
                         { property: 'lastName', text: 'Last Name'},
                         { property: 'age', text: 'Age' },
                         { property: 'DOB', text: 'DOB'},
                     ],
-                    tBody:[
-                        {
-                            "id": 1,
-                            "firstName": "Graiden",
-                            "lastName": "Mccray",
-                            "age": 90,
-                            "DOB": "2017-11-29T12:48:01-08:00"
-                        },
-                        {
-                            "id": 2,
-                            "firstName": "Otto",
-                            "lastName": "Hall",
-                            "age": 36,
-                            "DOB": "2017-07-26T16:54:13-07:00"
-                        }
-                    ],
-                    trackBy : 'id'
+                    tBody:[],
+                    trackBy : 'id',
+                    rowsPerPage:9,
+                    rowsPerPageOptions:[9,10,25,40],
+                    toolSwitch:{
+                        filterRowEnabled : true,
+                        sortingEnabled: true
+                    }
                 }  
             })
     </script>
