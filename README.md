@@ -443,14 +443,14 @@ $http.get("https://api.myjson.com/bins/lmt46")
 
 ### Code contribution
 
-**Setting up in Local**
-
 After having downloaded the repo in local
 
 run `npm start`, 
 
 Directive : `src/table-almighty.js`  
 Directive TemplateURL :  `src/table-almighty-template`
+
+Other demo's use distribution file, `examples/developer-example/` uses src file, you can experiment your changes in there.
 
 To create directive distribution file(`/dist/js/table-almighty.js`) run `grunt dev`,
  See grunt config for further information about it.
