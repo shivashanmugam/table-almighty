@@ -46,22 +46,23 @@ app.controller('customTableCtrl', function ($scope, $http) {
 
     $scope.tableConfig = {
         tHeads: [
-            { property: 'firstName', text: 'First Name', customColumnClass: 'first-name'    },
+            { property: 'firstName', text: 'First Name', search : {type: 'INPUT' }     },
             { property: 'lastName', text: 'Last Name', search : {type: 'INPUT' } },
             { 
                 property: 'age', 
                 text: 'Age', 
                 search : {
                             type: 'SELECT', options:[
-                                { text: 'Age > 50' , exp : "tRow['age'] > 50" },
-                                { text: '9' , exp : "tRow['age'] == 9" },
+                                { text: 'Age > 40' , exp : "tRow['age'] > 40" },
+                                { text: '40 < Age < 70 ' , exp : "tRow['age'] < 70 && tRow['age'] > 40" },
+                                { text: 'Age > 70' , exp : "tRow['age'] > 70" },
+                                { text: '90' , exp : "tRow['age'] == 90" },
                                 { text : '24', exp : "tRow['age'] == 24"}
                             ],
-                            inputType: 'Number',
                         },
-                        dataAlign : 'text-right'  
+                        customColumnClass: 'first-name'
             },
-            { property: 'DOB', text: 'DOB', search : {type: 'INPUT' } },
+            { property: 'DOB', text: 'DOB' },
         ],
         tBody:[],
         getCellData : $scope.getCellData,
@@ -88,7 +89,7 @@ app.controller('customTableCtrl', function ($scope, $http) {
         ],
         rowColorScheme: [
             {
-                expression:"tRow['age'] > 50",
+                expression:"tRow['age'] > 80",
                 class:'bg-silver'
             },
             {
@@ -96,7 +97,7 @@ app.controller('customTableCtrl', function ($scope, $http) {
                 class:'bg-green'
             }
         ],
-        selectedRowColor:'red',
+        selectedRowColor:'rgb(244, 188, 66, 0.8)',
         sortableOptions: {
             disabled: false,
             //this helper function makes sure not to shrink the td in tr while dragging
@@ -107,18 +108,19 @@ app.controller('customTableCtrl', function ($scope, $http) {
                 return ui;
             }
         },
-        // customLabels:{
-        //     selectedCount:'Artículos seleccionados',
-        //     rowsPerPage : 'Filas por página',
-        //     selectSearchDefault : 'Seleccionar'
-        // },
+        customLabels:{
+            selectedCount:'Items Selected',
+            rowsPerPage : 'Items in page',
+            selectSearchDefault : '------------------'
+        },
         customClass:{
-            table:'custom-tb-class',
+            table:'custom-tbl-class',
             filterInputBox : 'custom-input-box',
-            selectBox : 'custom-input-box',
+            selectBox : 'custom-select-box',
             rowActionButton: 'custom-row-action-button',
             tableActionButton: 'custom-table-action-button',
-            pagination:'custom-pagination'
+            pagination:'custom-pagination',
+            tableLabel: 'custom-table-label'
         },
         toolSwitch:{
             filterRowEnabled : true,

@@ -26,29 +26,131 @@ body{
 }
 
 .first-name{
-    background-color: yellow;
+    background-color: #f1f1f1;
+    border: 1px solid silver;
+    text-align: center;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.custom-tbl-class{
+    background-color: white;
+    border-spacing:0px;
+    width:100%;
+    margin-bottom: 15px;
+}
+.custom-tbl-class thead{
+    font-size:14px;
+    background:#3f3f3f;
+    color:white;
+}
+
+.custom-tbl-class thead tr:nth-child(1){
+    border-bottom:2px solid white;
+}
+
+.custom-tbl-class thead tr th{
+    padding:10px 10px;
     text-align: center;
 }
 
-.custom-tb-class{
-    background-color: white;
+.custom-tbl-class thead tr td{
+    padding:10px 10px;
+}
+
+.custom-tbl-class tbody tr{
+    border:1px solid silver;
+}
+
+.custom-tbl-class td{
+    padding:10px 10px;
+    text-align: center;
 }
 
 .custom-input-box{
-    background:#f1f1f1;
+    color:black;
+    background: white;
+    border: 1px solid silver;
+    padding: 3px 10px;
+    border-radius: 4px;
 }
 
-.custom-select-box{
-    background:#f1f1f1;
+.custom-select-box {
+    padding: 3px 10px;
+    background:#4267b2;
+    color:white;
+    font-size:14px;
+    font-weight: bold;
+    border-radius: 2px;
 }
 
 .custom-row-action-button{
-    background:yellowgreen;
-    
+    border: 0px;
+    border-radius: 4px;
+    padding: 3px 10px;
+    background: white;
+    font-size:14px;
+    border:1px solid silver;
+}
+
+.custom-row-action-button:hover{
+    background:#f5f5f5;
 }
 
 .custom-table-action-button{
-    background:green;   
+    font-weight: bold;
+    background: #4267b2;
+    padding: 3px 10px;
+    font-size: 14px;
+    color: white;
+    float: left;
+    margin:10px 5px;
+    border:0px;
+    border-radius: 2px;
+}
+
+.custom-table-action-button:hover{
+    background: #274581;
+}
+
+.custom-table-action-button:nth-child(1){
+    margin-left:0px;
+}
+
+.custom-pagination{
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+.custom-pagination li {
+    float: left;
+    padding:5px 12px;
+    margin:1px;
+    border:1px solid silver;
+    cursor:pointer;
+    font-size:16px;
+    font-weight: bold;
+    background: #4267b2;
     color:white;
-    float:left;
+}
+
+.custom-pagination li a{
+    color:inherit;
+}
+
+.custom-pagination li:hover{
+    background:#274581;
+}
+
+.custom-pagination li.active{
+    background:#f5f5f5;
+    color:black;
+}
+
+.custom-table-label{
+    font-size:16px;
 }
