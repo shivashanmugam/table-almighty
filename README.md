@@ -27,7 +27,7 @@
 </body>
 ```
 
-```javascript=
+```javascript
 var app = angular.module('getStarted', ['tableAlmightyApp']);
 
 app.controller('getStartedCtrl', function ($scope, $http) {
@@ -72,7 +72,7 @@ app.controller('getStartedCtrl', function ($scope, $http) {
 
 ### Process data before rendering
 Incase if the column details need to be processed before rendering  in the table, For example DOB property is in UTC format(`2017-11-29T12:48:01-08:00`), But want to display in more readable format (`Sun May 28 2017`) tableConfig provides function to process tBody values before rendering.
-```javascript=
+```javascript
 
 $scope.getCellData = function(row, property){
     if(property == "DOB"){
@@ -102,7 +102,7 @@ $scope.tableConfig = {
 Other use cases are instead of showing full name of the person instead of show first name and lastname.
 
 ## Rows per page &  Pagination
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -114,7 +114,7 @@ $scope.tableConfig = {
 **Property Description**
 - `rowsPerPage` onced added will add pagination and restricts the number of rows per page based on the value given.
 - 
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -132,7 +132,7 @@ $scope.tableConfig = {
 ## Search and Sort
 
 ### Search
-```javascript=
+```javascript
 $scope.tableConfig = {
     tHeads: [
         { property: 'firstName', text: 'First Name', search : {type: 'INPUT' }},
@@ -162,7 +162,7 @@ $scope.tableConfig = {
     `Number` - Matches exactly the number, If not mentioned filters (9, 9*, 9**, *9**, etc)
 
     __Example__
-    ```javascript=
+    ```javascript
     search : {
         type: 'SELECT', options:[
             { text: 'Age > 50' , exp : "tRow['age'] > 50" },
@@ -179,7 +179,7 @@ $scope.tableConfig = {
         - `exp` how the option should be evaluted against property. `tRow[<property_name>]` gives access to row property
             
 ### Sort
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -194,7 +194,7 @@ Adding `sortingEnabled` proptery inside `toolSwitch` enables sorting for all the
 Also distinguishes sorting Type (Number, String, Date) through the property types.
     
 ## Actions for every row
-```javascript=
+```javascript
 $scope.removeRow = function(rowId){
     $scope.tableConfig.tBody.every(function(tRow, index){
         if(rowId == tRow[$scope.tableConfig.trackBy] ){
@@ -235,7 +235,7 @@ $scope.tableConfig = {
      ```
 ## Selecting rows and Performing actions
 
-```javascript=
+```javascript
 $scope.tableConfig = {
     
     ...
@@ -283,7 +283,7 @@ In the code `$scope.tableConfig.getSelectedRows();` returns the selected rows. `
 
 ### Refresh directive (Resetting Directive values)
 Incase want's to refresh table data , just need to update `tableConfig.tBody` with new table data and need to call `$scope.tableConfig.resetDirective` function to reset search, sort, pagination, selected rows 
-```javascript=
+```javascript
 $scope.refresh = function(){
         $http.get("https://api.myjson.com/bins/lmt46")
         .then(function(response) {
@@ -298,7 +298,7 @@ You can also have this function as a `tableActions` Object.
 
 ## Conditional coloring of rows and Column coloring 
 ### Row color
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -324,7 +324,7 @@ $scope.tableConfig = {
 - `class` The custom class which will be applied when the `expression` is true.
 
 ### Coloring column (Custom css classes for column)
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -338,7 +338,7 @@ $scope.tableConfig = {
 `tHead` Object property `customColumnClass` allows to add css classes for that particular column alone, ( `first-name` is the css class). Through that we can add background color for the column. 
 
 ### Selected row Color
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -351,7 +351,7 @@ By adding `selectedRowColor` property adds specified color for the row.
 
 
 ## Reordering
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -382,7 +382,7 @@ Currently adding the `sortableOptions` and `toolSwitch.sortingEnabled` value tru
 
 
 ## Custom labels 
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -397,7 +397,7 @@ $scope.tableConfig = {
 ```
 By default the table has some default english text for table action labels, In case the users are spanish you can use `customLabels` to override the default text.
 ## Custom classes
-```javascript=
+```javascript
 $scope.tableConfig = {
     ...
     ...
@@ -424,7 +424,7 @@ Currently the directive uses bootstrap, To override that and to use custom class
 
 
 You can also update the config `tBody` after a `http` response
-```javascript=
+```javascript
 $http.get("https://api.myjson.com/bins/lmt46")
     .then(function(response) {
         $scope.tableConfig.tBody = response.data;
