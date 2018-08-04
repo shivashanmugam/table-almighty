@@ -20,7 +20,7 @@
 8. [Custom classes](#custom-classes)
 9. [Dependencies](#dependencies)
 10. [Contribution Guidelines](contribution-guidelines)
-11. [What to expect in Next version] (what-to-expect-in-next-version)
+11. [What to expect in Next version](what-to-expect-in-next-version)
 
 ## Getting Started
 
