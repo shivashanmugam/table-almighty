@@ -1,6 +1,6 @@
 {
   "name": "table-almighty",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Generate table through configuration",
   "author": "sivashanmugam4444@gmail.com",
   "main": "server.js",

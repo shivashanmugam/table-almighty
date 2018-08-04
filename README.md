@@ -1,5 +1,7 @@
 # table-almighty 
 
+[Full functionality demo](https://shivashanmugam.github.io/table-almighty)
+
 ## Table of Content
 1. [Getting Started](#getting-started)
     - [Simple Example](#simple-example)
@@ -17,8 +19,11 @@
 7. [Custom labels](#custom-labels)
 8. [Custom classes](#custom-classes)
 9. [Dependencies](#dependencies)
+10. [Contribution Guidelines]()
 
 ## Getting Started
+
+[Simple example demo](https://shivashanmugam.github.io/table-almighty/examples/get-started/index.html)
 
 ### Simple Example
 ```htmlmixed=
@@ -433,3 +438,23 @@ $http.get("https://api.myjson.com/bins/lmt46")
 
 > **Note** 
 > Currently `angular-sortable` is not optional because loading angular modules dynamically is quite a hack, Future versions might have it. (angular sortable will trigger if jquery and jquery-ui is not loaded, But that does't cause any effects in table-almighty direcive ),
+
+## Contribution Guidelines
+
+### Code contribution
+
+**Setting up in Local**
+
+After having downloaded the repo in local
+
+run `npm start`, 
+
+Directive : `src/table-almighty.js`  
+Directive TemplateURL :  `src/table-almighty-template`
+
+To create directive distribution file(`/dist/js/table-almighty.js`) run `grunt dev`,
+ See grunt config for further information about it.
+
+### Bug reporting
+use `v1.0` Labels for the current version,  
+Add screenshots or jsfiddle or instructions to reproduce while reporting issues.
