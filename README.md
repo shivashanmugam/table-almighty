@@ -459,3 +459,6 @@ To create directive distribution file(`/dist/js/table-almighty.js`) run `grunt d
 ### Bug reporting
 use `v1.0` Labels for the current version,  
 Add screenshots or jsfiddle or instructions to reproduce while reporting issues.
+
+## What to expect in Next version
+[Click here](https://github.com/shivashanmugam/table-almighty/issues/1)
