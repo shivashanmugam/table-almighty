@@ -154,3 +154,8 @@ body{
 .custom-table-label{
     font-size:16px;
 }
+
+.pop-up-container{
+    height: 100px;
+    weight : 100px;
+}
