@@ -2,7 +2,8 @@ var app = angular.module('customTable', ['tableAlmightyApp']);
 
 app.controller('customTableCtrl', function ($scope, $http) {
 
-    $http.get("https://api.myjson.com/bins/lmt46")
+    var dataUrl = 'https://gist.githubusercontent.com/shivashanmugam/90fdad5f0fea5254bf9115d840a690ca/raw/964f7a2d67f4872cff3ff0c18c023ea30485688c/table_almighty_person_data_hundred.json'
+    $http.get(dataUrl)
     .then(function(response) {
         $scope.tableConfig.tBody = response.data;
     });
@@ -16,7 +17,7 @@ app.controller('customTableCtrl', function ($scope, $http) {
     }
 
     $scope.refresh = function(){
-        $http.get("https://api.myjson.com/bins/lmt46")
+        $http.get(dataUrl)
         .then(function(response) {
             $scope.tableConfig.tBody = response.data;
         });           
