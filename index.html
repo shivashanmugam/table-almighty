@@ -1,19 +1,114 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./libs/jquery-ui/jquery-ui.css" />
-        <link rel="stylesheet" href="./libs/bootstrap/bootstrap.css" />
-        <link rel="stylesheet" href="./libs/font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="./style.css" />
-    </head>
-    <body ng-app="customTable" ng-controller="customTableCtrl" class="container">
-        <table-almighty config="tableConfig"></table-almighty>
-    </body>
-    <script src="./libs/jquery/jquery.js"></script>
-    <script src="./libs/jquery-ui/jquery-ui.js"></script>
-    <script src="./libs/bootstrap/bootstrap.js"></script>
-    <script src="./libs/angular/angular.js"></script>
-    <script src="./libs/angular-sortable/sortable.js"></script>
-    <script src="./dist/js/table-almighty.js"></script>
-    <script src="./main.js"></script>
+
+<head>
+    <link rel="stylesheet" href="./libs/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="./libs/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="./libs/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<div ng-app="customTable" ng-controller="customTableCtrl" class="">
+    <div class="intro">
+        <img style="width:10%" src="https://i.imgur.com/nMmMQ9O.png" />
+        <div style="padding:20px; font-size: 1.5rem;">
+            <h4>Table almighty 1.0</h4>
+            <i class="fa fa-github"></i>&nbsp;&nbsp;<a href="https://github.com/shivashanmugam/table-almighty">Library
+                repo</a>
+            <p style="font-size: 1.5rem;">Created this awesome configurable table library in 2016 in AngularJS 1.0 for
+                a side project.
+                Unfortunately AngularJS is no longer in the broader usage.<br>But sits at top in my work
+                showcase
+            </p>
+        </div>
+
+    </div>
+
+    <table-almighty config="tableConfig"></table-almighty>
+    <div id="explanatory-tab" class="container">
+        <h5>Features and usage</h5>
+        <div style="text-align:center">
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#1" data-toggle="tab">Sorting</a>
+            </li>
+            <li><a href="#2" data-toggle="tab">Search</a>
+            </li>
+            <li><a href="#3" data-toggle="tab">Selectable Search</a>
+            </li>
+            <li><a href="#4" data-toggle="tab">Custom coloring</a>
+            </li>
+            <li><a href="#5" data-toggle="tab">Bulk row action</a>
+            </li>
+            <li>
+                <a href="#6" data-toggle="tab">Reordering</a>
+            </li>
+            <li>
+                <a href="#7" data-toggle="tab">Pagination</a>
+            </li>
+        </ul>
+
+        <div class="tab-content ">
+            <div class="tab-pane active" id="1">
+                <p>Capable to sort colums which contains
+                <ul class="list-group">
+                    <li>alphabets</li>
+                    <li>numbers</li>
+                    <li>dates</li>
+                </ul>
+                </p>
+                <script src="https://gist.github.com/shivashanmugam/ef5a04e293d2a32e4e1666883101ef5e.js"></script>
+
+            </div>
+
+            <div class="tab-pane" id="2">
+                <a href="https://github.com/shivashanmugam/table-almighty#search">Document reference</a><br></br>
+                <script src="https://gist.github.com/shivashanmugam/175f02a27c9d4a92ab0abeecd7cf87ce.js"></script>
+
+            </div>
+
+            <div class="tab-pane" id="3">
+                <p>You can add list of options to select to search, The below example provides way to filter Different
+                    ages</p>
+                <img style="width:100%;margin:auto;" src="https://i.imgur.com/9pWwkVL.png" />
+                <br></br>
+                <script src="https://gist.github.com/shivashanmugam/c33582d68f2a81f6573ad5b957eb99e1.js"></script>
+            </div>
+            <div class="tab-pane" id="4">
+                <h5>Row coloring</h5>
+                <a
+                    href="https://github.com/shivashanmugam/table-almighty#conditional-coloring-of-rows-and-column-coloring">Document
+                    reference</a><br></br>
+                <p>We can add custom coloring based conditions provided to rows</p>
+                <script src="https://gist.github.com/shivashanmugam/5d44eb2c62b3f5704dd9a7ab187fb257.js"></script>
+                <h5>Column coloring</h5>
+                <script src="https://gist.github.com/shivashanmugam/63b6e6ea1710b269514934b6936119da.js"></script>
+            </div>
+            <div class="tab-pane" id="5">
+                <h5>Bulk Action</h5>
+                <p>Selecting multiple rows and performing different actions</p>
+                <script src="https://gist.github.com/shivashanmugam/e915705bb7e17ad1eda085d47dc59062.js"></script>
+            </div>
+            <div class="tab-pane" id="6">
+                <p>this feature enables the table to reorder the list of items through simple drag and drop</p>
+                <img style="width:100%;margin:auto" src="https://i.imgur.com/f9gXhdc.png" />
+                <script src="https://gist.github.com/shivashanmugam/0f1cfad6e9ec5fd63f98f6881f59a1f6.js"></script>
+            </div>
+            <div class="tab-pane" id="7">
+                <p>Enabling pagination and showing per page item count option for user</p>
+                <script src="https://gist.github.com/shivashanmugam/560742d1d90e29c1d0c3d79909a0fe53.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./libs/jquery/jquery.js"></script>
+<script src="./libs/jquery-ui/jquery-ui.js"></script>
+<script src="./libs/bootstrap/bootstrap.js"></script>
+<script src="./libs/angular/angular.js"></script>
+<script src="./libs/angular-sortable/sortable.js"></script>
+<script src="./dist/js/table-almighty.js"></script>
+<script src="./main.js"></script>
+
 </html>

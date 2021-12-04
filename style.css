@@ -1,31 +1,52 @@
-body{
-    font-family: 'Open Sans', Arial;
+html {
+    margin: 0 10%;
+    zoom: 85%;
+}
+
+body {
+    font-family: "Inter var", "Inter", sans-serif;
     font-size: 12px;
-    margin-top:50px;
+    margin-top: 20px;
+}
+
+#explanatory-tab {
+    padding: 15px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin-top: 5%;
+}
+
+.intro {
+    margin-bottom: 40px;
+    display: flex;
+    background: #f1f1f1;
+    padding: 10px 10px;
+    border-radius: 4px;
+    border: 1px solid silver;
 }
 
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
- }
+}
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer !important;
 }
 
 .cursor-move {
-    cursor:move !important;
+    cursor: move !important;
 }
 
-.bg-silver{
-    background-color:#e1e1e1;
+.bg-silver {
+    background-color: #e1e1e1;
 }
 
-.bg-green{
-    background-color:greenyellow;
+.bg-green {
+    background-color: #adff2f96;
 }
 
-.first-name{
+.first-name {
     background-color: #f1f1f1;
     border: 1px solid silver;
     text-align: center;
@@ -33,42 +54,43 @@ body{
     border-bottom: 0px;
 }
 
-.custom-tbl-class{
+.custom-tbl-class {
     background-color: white;
-    border-spacing:0px;
-    width:100%;
+    border-spacing: 0px;
+    width: 100%;
     margin-bottom: 15px;
 }
-.custom-tbl-class thead{
-    font-size:14px;
-    background:#3f3f3f;
-    color:white;
+
+.custom-tbl-class thead {
+    font-size: 14px;
+    background: #3f3f3f;
+    color: white;
 }
 
-.custom-tbl-class thead tr:nth-child(1){
-    border-bottom:2px solid white;
+.custom-tbl-class thead tr:nth-child(1) {
+    border-bottom: 2px solid white;
 }
 
-.custom-tbl-class thead tr th{
-    padding:10px 10px;
+.custom-tbl-class thead tr th {
+    padding: 10px 10px;
     text-align: center;
 }
 
-.custom-tbl-class thead tr td{
-    padding:10px 10px;
+.custom-tbl-class thead tr td {
+    padding: 10px 10px;
 }
 
-.custom-tbl-class tbody tr{
-    border:1px solid silver;
+.custom-tbl-class tbody tr {
+    border: 1px solid silver;
 }
 
-.custom-tbl-class td{
-    padding:10px 10px;
+.custom-tbl-class td {
+    padding: 10px 10px;
     text-align: center;
 }
 
-.custom-input-box{
-    color:black;
+.custom-input-box {
+    color: black;
     background: white;
     border: 1px solid silver;
     padding: 3px 10px;
@@ -77,47 +99,48 @@ body{
 
 .custom-select-box {
     padding: 3px 10px;
-    background:#4267b2;
-    color:white;
-    font-size:14px;
+    background: #4267b2;
+    color: white;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 2px;
 }
 
-.custom-row-action-button{
+.custom-row-action-button {
     border: 0px;
     border-radius: 4px;
     padding: 3px 10px;
     background: white;
-    font-size:14px;
-    border:1px solid silver;
+    font-size: 14px;
+    margin: 0 4px;
+    border: 1px solid silver;
 }
 
-.custom-row-action-button:hover{
-    background:#f5f5f5;
+.custom-row-action-button:hover {
+    background: #f5f5f5;
 }
 
-.custom-table-action-button{
+.custom-table-action-button {
     font-weight: bold;
     background: #4267b2;
     padding: 3px 10px;
     font-size: 14px;
     color: white;
     float: left;
-    margin:10px 5px;
-    border:0px;
+    margin: 10px 5px;
+    border: 0px;
     border-radius: 2px;
 }
 
-.custom-table-action-button:hover{
+.custom-table-action-button:hover {
     background: #274581;
 }
 
-.custom-table-action-button:nth-child(1){
-    margin-left:0px;
+.custom-table-action-button:nth-child(1) {
+    margin-left: 0px;
 }
 
-.custom-pagination{
+.custom-pagination {
 
     list-style-type: none;
     margin: 0;
@@ -128,29 +151,65 @@ body{
 
 .custom-pagination li {
     float: left;
-    padding:5px 12px;
-    margin:1px;
-    border:1px solid silver;
-    cursor:pointer;
-    font-size:16px;
+    padding: 5px 12px;
+    margin: 1px;
+    border: 1px solid silver;
+    cursor: pointer;
+    font-size: 16px;
     font-weight: bold;
     background: #4267b2;
-    color:white;
+    color: white;
 }
 
-.custom-pagination li a{
-    color:inherit;
+.custom-pagination li a {
+    color: inherit;
 }
 
-.custom-pagination li:hover{
-    background:#274581;
+.custom-pagination li:hover {
+    background: #274581;
 }
 
-.custom-pagination li.active{
-    background:#f5f5f5;
-    color:black;
+.custom-pagination li.active {
+    background: #f5f5f5;
+    color: black;
 }
 
-.custom-table-label{
-    font-size:16px;
+.custom-table-label {
+    font-size: 16px;
+}
+
+
+#exTab1 .tab-content {
+    color: white;
+    background-color: #428bca;
+    padding: 5px 15px;
+}
+
+#exTab2 h3 {
+    color: white;
+    background-color: #428bca;
+    padding: 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills>li>a {
+    border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills>li>a {
+    border-radius: 4px 4px 0 0;
+}
+
+#exTab3 .tab-content {
+    color: white;
+    background-color: #428bca;
+    padding: 5px 15px;
+}
+
+.tab-pane {
+    font-size: 1.5r em;
+    padding: 10px 20px;
 }
