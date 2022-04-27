@@ -23,7 +23,7 @@
     "express": "4.16.3"
   },
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.5.2",
     "grunt-angular-template-embedding": "0.0.4"
   }
 }
