@@ -20,7 +20,7 @@
     "angularJS", "angular 1", "angularJS table", "dynamic table", "configurable table"
   ],
   "dependencies": {
-    "express": "4.16.3"
+    "express": "4.17.3"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
